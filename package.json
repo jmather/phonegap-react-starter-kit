@@ -1,0 +1,53 @@
+{
+  "name": "phonegap-react-starter-kit",
+  "version": "1.0.0",
+  "description": "A starter kit for building HTML5/CSS apps in React.js",
+  "dependencies": {
+    "autoprefixer": "^6.0.1",
+    "browserify": "^11.0.1",
+    "cli": "^0.9.0",
+    "flux": "^2.0.3",
+    "keymirror": "^0.1.1",
+    "object-assign": "^3.0.0",
+    "postcss-cli": "^2.1.0",
+    "postcss-simple-vars": "^1.0.0",
+    "promise": "^7.0.4",
+    "react": "^0.13.3",
+    "react-fastclick": "^1.0.3",
+    "reactify": "^1.1.1",
+    "underscore": "^1.8.3",
+    "watchify": "^3.3.1"
+  },
+  "optionalDependencies": {
+    "ios-deploy": "^1.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-js": "watchify -v -d www/js/index.js -o www/js/index-compiled.js",
+    "build-js": "browserify -d www/js/index.js -o www/js/index-compiled.js",
+    "build-css": "postcss --use autoprefixer --use postcss-simple-vars www/css/src/style.scss -o www/css/style.css",
+    "watch-css": "postcss -w --use autoprefixer --use postcss-simple-vars www/css/src/style.scss -o www/css/style.css",
+    "build-ios": "phonegap build ios",
+    "build-app": "npm run build-js && npm run build-css",
+    "run": "phonegap emulate --platform ios",
+    "rebuild": "browserify www/js/index.js -d -o www/js/index-compiled.js && phonegap build ios && phonegap emulate --platform ios",
+    "update-ios": "cp www/js/index-compiled.js platforms/ios/www/js/index-compiled.js && cp www/css/style.css platforms/ios/www/css/style.css",
+    "rebuild-ios": "npm run update-ios && osascript -e 'tell application \"Xcode\" to activate' && osascript -e 'tell application \"System Events\" to keystroke \"r\" using command down' && osascript -e 'tell application \"Terminal\" to activate'",
+    "init-ios": "phonegap platfrom add ios && npm run build-ios"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jmather/phonegap-react-starter-kit.git"
+  },
+  "author": "Jacob Mather",
+  "license": "ISC",
+  "homepage": "https://github.com/jmather/phonegap-react-starter-kit#readme",
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "devDependencies": {
+    "express": "^4.13.3"
+  }
+}
