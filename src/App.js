@@ -5,8 +5,8 @@ var AppStore = require('./store/AppStore');
 
 var Nav = require('./Nav');
 
-var HomeView = require('./Views/Home');
-var AboutView = require('./Views/About');
+var HomeView = require('./views/Home');
+var AboutView = require('./views/About');
 
 function getState() {
     return {
